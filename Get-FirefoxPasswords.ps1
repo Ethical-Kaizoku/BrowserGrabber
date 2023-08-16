@@ -215,9 +215,9 @@ Function Print-Output
         $Result
     )
 
-    Write-Host "Site: $($revised.hostname)"
-    Write-Host "User: $($revised.username)"
-    Write-Host "Pass: $($revised.password)"
+    echo "Site: $($revised.hostname)"
+    echo "User: $($revised.username)"
+    echo "Pass: $($revised.password)"
 }
 
 Function Get-FirefoxPasswords
@@ -235,7 +235,7 @@ Function Get-FirefoxPasswords
         
     for ($index = 0; $index -lt $profiles.count; $index++)
     {
-        Write-Host "[i] $($profiles[$index])"
+        echo "[i] $($profiles[$index])"
         $core = Join-Path -Path $profilesDir -ChildPath ($profiles[$index].Name)
         $firefoxFiles = Find-FirefoxFiles -Profile $core
         
@@ -274,9 +274,9 @@ Function Get-FirefoxPasswords
         }
         else 
         {
-            Write-Host "No password for this profile."
+            echo "No password for this profile."
         }
-        Write-Host ""
+        echo ""
     }
     
 }
