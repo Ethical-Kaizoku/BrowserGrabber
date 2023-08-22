@@ -267,10 +267,11 @@ Function Get-FirefoxPasswords
                 $revisedPart = $passwordData[$i] | Select-Object * -ExcludeProperty @('httpRealm', 'encryptedUsername', 'encryptedPassword')
                 $revisedPart | Add-Member -MemberType 'NoteProperty' -Name 'username' -Value $decrypted[($i * 2) - 1]
                 $revisedPart | Add-Member -MemberType 'NoteProperty' -Name 'password' -Value $decrypted[($i * 2)]
+
+                Print-Output -Result $revisedPart
+                
                 $revised[$i] = $revisedPart
             }
-
-            Print-Output -Result $revised
         }
         else 
         {
