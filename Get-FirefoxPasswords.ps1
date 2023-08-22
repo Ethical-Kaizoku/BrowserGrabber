@@ -215,9 +215,9 @@ Function Print-Output
         $Result
     )
 
-    echo "Site: $($revised.hostname)"
-    echo "User: $($revised.username)"
-    echo "Pass: $($revised.password)"
+    echo "Site: $($Result.hostname)"
+    echo "User: $($Result.username)"
+    echo "Pass: $($Result.password)"
 }
 
 Function Get-FirefoxPasswords
