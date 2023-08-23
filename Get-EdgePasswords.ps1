@@ -1,4 +1,4 @@
-Function Get-ChromePasswords
+Function Get-EdgePasswords
 {
     <#
     .SYNOPSIS
@@ -130,4 +130,4 @@ Function Get-ChromePasswords
     }
 }
 
-Get-ChromePasswords
+Get-EdgePasswords
